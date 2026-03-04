@@ -9,8 +9,7 @@ class Table(models.Model):
     seats = models.PositiveIntegerField(blank=True, null=True, verbose_name='количество мест', validators=[MinValueValidator(1)])
     description = models.CharField(max_length=250, blank=True, null=True, verbose_name='Описание')
     is_active = models.BooleanField(default=True)
-    data = models.TimeField(verbose_name='Дата бронирования', unique=True) # на какой день забронировано
-    time = models.TimeField(verbose_name='Время бронирования', unique=True)
+
 
 
     def __str__(self):
@@ -30,6 +29,7 @@ class Reservation(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations', verbose_name='Клиент')
+    table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='reservations', verbose_name='стол')
     date = models.DateField(verbose_name='Дата')
     time = models.TimeField(verbose_name='Время')
     guests = models.PositiveIntegerField(validators=[MinValueValidator(1)])
