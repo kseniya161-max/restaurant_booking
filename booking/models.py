@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator
+from django.conf import settings
+from users.models import User
 
 
 class Table(models.Model):
@@ -28,7 +30,7 @@ class Reservation(models.Model):
         ('cancelled', 'Cancelled'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations', verbose_name='Клиент')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reservations', verbose_name='Клиент')
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='reservations', verbose_name='стол')
     date = models.DateField(verbose_name='Дата')
     time = models.TimeField(verbose_name='Время')
