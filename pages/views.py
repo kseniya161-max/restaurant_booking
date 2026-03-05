@@ -3,9 +3,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import success
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 from booking.models import Table, Reservation
+from booking.forms import ReservationForm
 
 
 class BookingPageView(ListView):
@@ -20,6 +21,7 @@ class BookingPageView(ListView):
 
 class ReservationCreateView(LoginRequiredMixin, CreateView):
     model = Reservation
+    form_class = ReservationForm
     fields = ['table','date', 'time','guests']
     template_name = 'booking/reservation_create.html'
     success_url = reverse_lazy('my_reservations')
@@ -39,7 +41,48 @@ class MyReservationListView(LoginRequiredMixin, ListView):
 
 
     def get_queryset(self):
-        return self.objects.filter(user=self.request.user)
+        return Reservation.objects.filter(user=self.request.user)
+
+
+class ReservationUpdateView(LoginRequiredMixin, UpdateView):
+    model = Reservation
+    form_class = ReservationForm
+    fields = ["table", "date", "time", "guests"]
+    template_name = 'booking/update_reservation.html'
+    success_url = reverse_lazy('my_reservations')
+
+
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
+
+
+    def form_valid(self,form):
+        messages.success(self.request, 'Бронирование обновлено')
+        return super().form_valid(form)
+
+
+class ReservationCancelView(LoginRequiredMixin, UpdateView):
+    model = Reservation
+    form_class = ReservationForm
+    fields = []
+    success_url = reverse_lazy('my_reservations')
+
+
+    def form_valid(self, form):
+        form.instance.status = 'canceled'
+        messages.success(self.request, "Бронирование отменено")
+        return super().form_valid(form)
+
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
+
+
+
+
+
+
+
+
 
 
 
