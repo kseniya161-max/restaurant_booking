@@ -1,8 +1,7 @@
 from django.db import models
-from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.conf import settings
-from users.models import User
+
 
 
 class Table(models.Model):
@@ -15,7 +14,7 @@ class Table(models.Model):
 
 
     def __str__(self):
-        return f"Table {self.number} {self.seats} {self.data}"
+        return f"Table {self.number} {self.seats}"
 
     class Meta:
         verbose_name = 'Стол'
@@ -34,7 +33,7 @@ class Reservation(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='reservations', verbose_name='стол')
     date = models.DateField(verbose_name='Дата')
     time = models.TimeField(verbose_name='Время')
-    guests = models.PositiveIntegerField(validators=[MinValueValidator(1)])
+    guests = models.PositiveIntegerField(verbose_name='Количество гостей', validators=[MinValueValidator(1)])
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='free')
     created_at = models.DateTimeField(auto_now_add=True)
 
