@@ -1,8 +1,8 @@
-from django.forms import ModelForm, forms
+from django import forms
 from booking.models import Reservation
 
 
-class ReservationForm(forms,ModelForm):
+class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
         fields = ['table', 'date', 'time', 'guests']
@@ -27,7 +27,7 @@ class ReservationForm(forms,ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ReservationForm, self).__init__(*args, **kwargs)
-        self.fields['table'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите номер стола'})
+        self.fields['table'].widget.attrs.update({'class': 'form-select'})
         self.fields['date'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите дату'})
         self.fields['time'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите время'})
         self.fields['guests'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Введите количество гостей'})
