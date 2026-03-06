@@ -4,7 +4,6 @@ from django.contrib.messages import success
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
-
 from booking.models import Table, Reservation
 from booking.forms import ReservationForm
 
@@ -22,14 +21,13 @@ class BookingPageView(ListView):
 class ReservationCreateView(LoginRequiredMixin, CreateView):
     model = Reservation
     form_class = ReservationForm
-    fields = ['table','date', 'time','guests']
     template_name = 'booking/reservation_create.html'
     success_url = reverse_lazy('my_reservations')
 
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        messages,success(self.request, 'Успешное бронирование')
+        messages.success(self.request, 'Успешное бронирование')
         return super().form_valid(form)
 
 
@@ -69,7 +67,7 @@ class ReservationCancelView(LoginRequiredMixin, UpdateView):
 
 
     def form_valid(self, form):
-        form.instance.status = 'canceled'
+        form.instance.status = 'cancelled'
         messages.success(self.request, "Бронирование отменено")
         return super().form_valid(form)
 
