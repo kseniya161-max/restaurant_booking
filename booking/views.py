@@ -46,7 +46,6 @@ class MyReservationListView(LoginRequiredMixin, ListView):
 class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     model = Reservation
     form_class = ReservationForm
-    fields = ["table", "date", "time", "guests"]
     template_name = 'booking/update_reservation.html'
     success_url = reverse_lazy('my_reservations')
 
@@ -64,7 +63,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
 class ReservationDetailView(LoginRequiredMixin, DetailView):
     model = Reservation
     template_name = 'booking/detail_reservation.html'
-    context_object_name = 'reservation_detail'
+    context_object_name = 'reservation'
 
 
     def get_queryset(self):
