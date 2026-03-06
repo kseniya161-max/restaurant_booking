@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import success
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from booking.models import Table, Reservation
 from booking.forms import ReservationForm
 
@@ -58,6 +58,17 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self,form):
         messages.success(self.request, 'Бронирование обновлено')
         return super().form_valid(form)
+
+
+
+class ReservationDetailView(LoginRequiredMixin, DetailView):
+    model = Reservation
+    template_name = 'booking/detail_reservation.html'
+    context_object_name = 'reservation_detail'
+
+
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
 
 
 class ReservationCancelView(LoginRequiredMixin, UpdateView):
