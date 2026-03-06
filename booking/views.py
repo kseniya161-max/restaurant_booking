@@ -1,4 +1,3 @@
-
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import success
@@ -7,6 +6,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from booking.models import Table, Reservation
 from booking.forms import ReservationForm
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 class BookingPageView(ListView):
@@ -28,8 +29,18 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        messages.success(self.request, 'Успешное бронирование')
-        return super().form_valid(form)
+        form.instance.status = 'confirmed'
+        response = super().form_valid(form)
+
+        send_mail(
+            subject='Бронирование подтверждено',
+            message=f'Ваше бронирование подтверждено.Стол: {self.object.table} Дата: {self.object.date} Время: {self.object.time} Гостей: {self.object.guests}',
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[self.request.user.email],
+            fail_silently=True
+        )
+        messages.success(self.request, 'Бронирование успешно создано')
+        return response
 
 
 
@@ -47,7 +58,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     model = Reservation
     form_class = ReservationForm
     template_name = 'booking/update_reservation.html'
-    success_url = reverse_lazy('my_reservations')
+    success_url = reverse_lazy('booking:reservation_list')
 
 
     def get_queryset(self):
@@ -73,7 +84,6 @@ class ReservationDetailView(LoginRequiredMixin, DetailView):
 class ReservationCancelView(LoginRequiredMixin, UpdateView):
     model = Reservation
     form_class = ReservationForm
-    fields = []
     success_url = reverse_lazy('my_reservations')
 
 

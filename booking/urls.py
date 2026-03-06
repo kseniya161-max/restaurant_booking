@@ -5,7 +5,7 @@ from booking.views import BookingPageView,ReservationCreateView,MyReservationLis
 app_name = "booking"
 
 urlpatterns = [
-    path('/', BookingPageView.as_view(), name='booking_list'),
+    path('', BookingPageView.as_view(), name='booking_list'),
     path('add/', ReservationCreateView.as_view(), name='reservation_add'),
     path('all/', MyReservationListView.as_view(), name='reservation_list'),
     path('<int:pk>/edit/', ReservationUpdateView.as_view(), name='reservation_edit'),
