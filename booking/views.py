@@ -9,9 +9,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-class BookingPageView(LoginRequiredMixin, ListView):
+class BookingPageView(ListView):
     model = Table
-    template_name = 'booking/booking.html'
+    template_name = 'booking.html'
     context_object_name = 'tables'
 
 
