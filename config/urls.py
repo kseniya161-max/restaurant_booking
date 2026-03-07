@@ -7,5 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='booking/')),
     path('booking/', include('booking.urls')),
-
+    path('users/', include('users.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

@@ -8,8 +8,8 @@ from users.models import User
 
 class RegistrationCreateView(CreateView):
     model = User
-    template_name = 'users/register.html'
     form_class = UserRegisterForm
+    template_name = 'users/register.html'
     success_url = reverse_lazy('login')
 
 
