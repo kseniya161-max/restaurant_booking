@@ -14,13 +14,14 @@ class ReservationForm(forms.ModelForm):
         date = cleaned_data.get("date")
         time = cleaned_data.get("time")
 
-        if Reservation.objects.filter(
-            table = table,
-            date = date,
-            time = time,
-            status = 'confirmed'
-        ).exists():
-            raise forms.ValidationError('Этот стол уже забронирован')
+        if table and date and time:
+            if Reservation.objects.filter(
+                table = table,
+                date = date,
+                time = time,
+                status = 'confirmed'
+            ).exists():
+                raise forms.ValidationError('Этот стол уже забронирован')
         return cleaned_data
 
 
