@@ -68,7 +68,7 @@ class MyReservationListView(LoginRequiredMixin, ListView):
 class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     model = Reservation
     form_class = ReservationForm
-    template_name = 'booking/update_reservation.html'
+    template_name = 'update_reservation.html'
     success_url = reverse_lazy('booking:my_reservations')
 
 
@@ -84,7 +84,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
 
 class ReservationDetailView(LoginRequiredMixin, DetailView):
     model = Reservation
-    template_name = 'booking/detail_reservation.html'
+    template_name = 'detail_reservation.html'
     context_object_name = 'reservation'
 
 
@@ -94,7 +94,9 @@ class ReservationDetailView(LoginRequiredMixin, DetailView):
 
 class ReservationCancelView(LoginRequiredMixin, UpdateView):
     model = Reservation
-    form_class = ReservationForm
+    # form_class = ReservationForm
+    fields = []
+    template_name = 'reservation_cancel.html'
     success_url = reverse_lazy('booking:my_reservations')
 
 

@@ -4,38 +4,29 @@
 
 <h1>Мои бронирования</h1>
 
-{% if reservations %}
+{% for r in reservations %}
 
-<ul>
+<div style="margin-bottom:20px">
 
-{% for reservation in reservations %}
+Стол: {{ r.table }} <br>
+Дата: {{ r.date }} <br>
+Время: {{ r.time }} <br>
+Статус: {{ r.status }}
 
-<li>
+<br><br>
 
-Столик: {{ reservation.table }}
+<a href="{% url 'booking:reservation_detail' r.id %}">Подробнее</a>
+<a href="{% url 'booking:reservation_edit' r.id %}">Изменить</a>
+<a href="{% url 'booking:reservation_cancel' r.id %}">Отменить</a>
 
-Дата: {{ reservation.date }}
+</div>
 
-Время: {{ reservation.time }}
+<hr>
 
-<a href="{% url 'booking:reservation_edit' reservation.id %}">
-Изменить
-</a>
+{% empty %}
 
-<a href="{% url 'booking:reservation_cancel' reservation.id %}">
-Отменить
-</a>
-
-</li>
+<p>У вас нет бронирований</p>
 
 {% endfor %}
-
-</ul>
-
-{% else %}
-
-<p>У вас пока нет бронирований</p>
-
-{% endif %}
 
 {% endblock %}
