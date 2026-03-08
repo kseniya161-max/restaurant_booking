@@ -1,4 +1,5 @@
 from pathlib import Path
+from dotenv import load_dotenv
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,8 +51,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-from dotenv import load_dotenv
-import os
+
+
 
 load_dotenv()
 
@@ -111,3 +112,5 @@ LOGOUT_REDIRECT_URL = '/booking/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = '/accounts/login/'

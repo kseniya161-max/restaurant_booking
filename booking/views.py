@@ -77,10 +77,6 @@ class BookingPageView(LoginRequiredMixin, ListView):
 #
 
 
-
-
-
-
 class MyReservationListView(LoginRequiredMixin, ListView):
     model = Reservation
     template_name = 'booking/my_reservation.html'
