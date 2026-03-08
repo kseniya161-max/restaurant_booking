@@ -7,6 +7,11 @@ class ReservationForm(forms.ModelForm):
         model = Reservation
         fields = ['table', 'date', 'time', 'guests']
 
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time': forms.TimeInput(attrs={'type': 'time'}),
+        }
+
 
     def clean(self):
         cleaned_data = super().clean()

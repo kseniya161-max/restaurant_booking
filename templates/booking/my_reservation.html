@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Мои бронирования</h1>
+
+{% if reservations %}
+
+<ul>
+
+{% for reservation in reservations %}
+
+<li>
+
+Столик: {{ reservation.table }}
+
+Дата: {{ reservation.date }}
+
+Время: {{ reservation.time }}
+
+<a href="{% url 'booking:reservation_update' reservation.id %}">
+Изменить
+</a>
+
+<a href="{% url 'booking:reservation_cancel' reservation.id %}">
+Отменить
+</a>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% else %}
+
+<p>У вас пока нет бронирований</p>
+
+{% endif %}
+
+{% endblock %}

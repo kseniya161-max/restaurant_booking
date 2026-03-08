@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+
+<h1>Бронирование</h1>
+
+<p>Стол: {{ reservation.table }}</p>
+<p>Дата: {{ reservation.date }}</p>
+<p>Время: {{ reservation.time }}</p>
+<p>Статус: {{ reservation.status }}</p>
+
+<a href="/booking/all/">Мои бронирования</a>
+
+{% endblock %}

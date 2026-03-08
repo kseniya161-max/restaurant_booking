@@ -45,36 +45,13 @@ class BookingPageView(LoginRequiredMixin, ListView):
 
             messages.success(request, "Бронирование успешно создано")
 
-            return redirect('booking:reservation_detail', pk=reservation.pk)
+            return redirect('booking:my_reservations', pk=reservation.pk)
 
-        context = self.get_context_data()
+        context = self.get_context_data(object_list=self.get_queryset())
         context['form'] = form
-
         return render(request, self.template_name, context)
 
 
-
-
-# class ReservationCreateView(LoginRequiredMixin, CreateView):
-#     model = Reservation
-#     form_class = ReservationForm
-#     template_name = 'booking/reservation_create.html'
-#     success_url = reverse_lazy('my_reservations')
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         form.instance.status = 'confirmed'
-#         response = super().form_valid(form)
-#
-#         send_mail(
-#             subject='Бронирование подтверждено',
-#             message=f'Ваше бронирование подтверждено.Стол: {self.object.table} Дата: {self.object.date} Время: {self.object.time} Гостей: {self.object.guests}',
-#             from_email=settings.DEFAULT_FROM_EMAIL,
-#             recipient_list=[self.request.user.email],
-#             fail_silently=True
-#         )
-#         messages.success(self.request, 'Бронирование успешно создано')
-#         return response
-#
 
 
 class MyReservationListView(LoginRequiredMixin, ListView):
