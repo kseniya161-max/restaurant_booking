@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Ресторан</h1>
+
+<p>Добро пожаловать в наш Ресторан</p>
+
+<h2>Services</h2>
+
+<ul>
+    <li>Семейные ужины</li>
+</ul>
+
+<h2>Контакты</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+</form>
+
+{% endblock %}
