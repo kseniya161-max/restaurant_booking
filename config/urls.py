@@ -8,5 +8,6 @@ urlpatterns = [
     path('', RedirectView.as_view(url='booking/')),
     path('booking/', include('booking.urls')),
     path('users/', include('users.urls')),
+    path('pages/', include('pages.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
