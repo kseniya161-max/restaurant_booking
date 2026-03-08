@@ -40,12 +40,12 @@ class BookingPageView(LoginRequiredMixin, ListView):
                         f'Дата: {reservation.date} Время: {reservation.time}',
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[request.user.email],
-                fail_silently=True
+                fail_silently=False
             )
 
             messages.success(request, "Бронирование успешно создано")
 
-            return redirect('booking:my_reservations', pk=reservation.pk)
+            return redirect('booking:reservation_detail', pk=reservation.pk)
 
         context = self.get_context_data(object_list=self.get_queryset())
         context['form'] = form
@@ -79,6 +79,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self,form):
         messages.success(self.request, 'Бронирование обновлено')
         return super().form_valid(form)
+
 
 
 
