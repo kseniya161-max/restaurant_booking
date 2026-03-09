@@ -1,6 +1,7 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -97,6 +98,10 @@ STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'users.User'
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', 465))
@@ -105,6 +110,9 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+
+
 
 
 LOGIN_REDIRECT_URL = '/booking/'
