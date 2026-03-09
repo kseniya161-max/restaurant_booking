@@ -14,31 +14,13 @@
 
 <body>
 
-<header>
+<header class="main-header">
 
-<nav class="container mt-3">
+<nav class="main-nav container">
 
 <a href="{% url 'pages:home' %}">Главная</a>
-
 <a href="{% url 'pages:about' %}">О нас</a>
-
 <a href="{% url 'booking:booking' %}">Бронирование</a>
-
-<a href="{% url 'booking:my_reservations' %}">Мои бронирования</a>
-
-{% if user.is_authenticated %}
-
-<span>Привет, {{ user.username }}</span>
-
-<a href="{% url 'logout' %}">Выйти</a>
-
-{% else %}
-
-<a href="{% url 'login' %}">Войти</a>
-
-<a href="{% url 'users:register' %}">Регистрация</a>
-
-{% endif %}
 
 </nav>
 
