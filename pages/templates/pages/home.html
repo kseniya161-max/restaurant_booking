@@ -1,23 +1,166 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
 
 {% block content %}
 
-<h1>Ресторан</h1>
+<!-- HERO -->
+<section class="hero">
 
-<p>Добро пожаловать в наш Ресторан</p>
+<div class="hero-overlay text-center">
 
-<h2>Services</h2>
+<h1>Добро пожаловать в наш ресторан</h1>
 
-<ul>
-    <li>Семейные ужины</li>
-</ul>
+<p>Лучшие традиции русской кухни</p>
+
+</div>
+
+</section>
+
+
+<!-- DESCRIPTION -->
+<section class="description container mt-5">
+
+<h2>Описание ресторана</h2>
+
+<p class="lead">
+Наш ресторан специализируется исключительно на русской кухне<br>
+У нас вы окунетесь в атмосферу русской кухни<br>
+Попробуете лучшие традиционные блюда
+</p>
+
+</section>
+
+
+<!-- SERVICES -->
+<section class="service container mt-5">
+
+<h2 class="text-center mb-4">Наш сервис</h2>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="{% static 'images/r2.avif' %}" class="card-img-top">
+
+<div class="card-body">
+
+<h5 class="card-title">Мероприятия</h5>
+
+<p class="card-text">
+Мы устраиваем мероприятия от дня рождения до повышения
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="{% static 'images/r2.avif' %}" class="card-img-top">
+
+<div class="card-body">
+
+<h5 class="card-title">Семейные ужины</h5>
+
+<p class="card-text">
+У нас есть отдельный зал для семейных ужинов
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="card">
+
+<img src="{% static 'images/r2.avif' %}" class="card-img-top">
+
+<div class="card-body">
+
+<h5 class="card-title">Банкеты</h5>
+
+<p class="card-text">
+Проводим банкеты до 100 человек
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT FORM -->
+<section class="contact-form container mt-5">
+
+<h2 class="text-center mb-3">Форма обратной связи</h2>
+
+<p class="text-center">
+Вы можете с нами связаться и мы обязательно вам перезвоним
+</p>
+
+<div class="form-wrapper">
+
+<form method="post">
+
+{% csrf_token %}
+    {{ form.as_p }}
+
+<div class="form-group">
+
+<label>Email</label>
+
+{{ form.email }}
+
+</div>
+
+<div class="form-group">
+
+<label>Сообщение</label>
+
+{{ form.message }}
+
+</div>
+
+<button type="submit" class="btn btn-primary btn-block">
+Отправить
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+<!-- CONTACTS -->
+<section class="contacts text-center mt-5">
 
 <h2>Контакты</h2>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Send</button>
-</form>
+<p>Ростов-на-Дону Большая Садовая 161</p>
+
+<p>email: xxx@mail.ru</p>
+
+<p>Тел.: 89528612548</p>
+
+</section>
 
 {% endblock %}
