@@ -4,47 +4,27 @@ position:absolute;
 top:0;
 left:0;
 width:100%;
-z-index:10;
+z-index:1000;
 background:transparent;
 }
 
-.main-nav a{
-color:#ffffff !important;
-text-decoration:none;
-font-weight:500;
-font-size:18px;
-justify-content:center;
-gap:40px;
-padding:20px;
-}
-
-.main-nav a:hover{
-text-decoration:underline;
-}
-
 .main-nav{
-
 display:flex;
 justify-content:center;
-gap:40px;
+gap:20px;
 padding:20px;
-
 }
 
 .main-nav a{
-
-color:white;
+color:black;
 text-decoration:none;
-font-weight:500;
-
+font-weight:700;
+font-size:18px;
 }
 
 .main-nav a:hover{
-
 text-decoration:underline;
-
 }
-
 
 .lead{
 max-width:560px;
@@ -52,7 +32,7 @@ color:#2b2b2b;
 margin:auto;
 }
 body{
-background:#081224;   /* более глубокий престижный синий */
+background:#081224;
 color:#ffffff;
 font-family:Arial, sans-serif;
 margin:0;
@@ -105,23 +85,20 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 /* CARDS */
 
 .card{
-height:100%;
+
+border:none;
+border-radius:10px;
+overflow:hidden;
+
+transition:0.3s;
+
+color:black;
+
 }
 
 .card img{
 height:200px;
 object-fit:cover;
-}
-
-.card{
-
-border:none;
-border-radius:10px;
-overflow:hidden;
-width:600px;
-
-transition:0.3s;
-
 }
 
 .card:hover{
@@ -130,17 +107,9 @@ transform:translateY(-5px);
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
 
 }
+
 .service .card{
-
-max-width:350px;
-margin:auto;
-
-}
-
-.card{
-
-color:black;
-
+height:100%;
 }
 
 /* О нашем Ресторане */
@@ -165,4 +134,40 @@ margin:auto;
 color:#d0d8e2;
 font-size:18px;
 
+}
+
+section{
+padding:60px 0;
+}
+
+.footer{
+
+background:#050d1a;
+color:#cbd3df;
+
+text-align:center;
+
+padding:40px 0;
+margin-top:80px;
+
+}
+
+.service .row{
+justify-content:center;
+}
+
+@media (max-width:768px){
+
+.main-nav{
+flex-direction:column;
+align-items:left;
+gap:5px;
+}
+
+.main-nav a{
+font-size:13px;
+}
+
+.main-nav{
+flex-wrap:wrap;
 }
