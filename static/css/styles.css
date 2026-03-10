@@ -159,15 +159,117 @@ justify-content:center;
 @media (max-width:768px){
 
 .main-nav{
-flex-direction:column;
-align-items:left;
-gap:5px;
+flex-direction:row;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
 }
 
 .main-nav a{
-font-size:13px;
+font-size:14px;
 }
 
-.main-nav{
-flex-wrap:wrap;
+}
+
+/* About hero*/
+
+.hero_about{
+height:350px;
+padding-top:120px;
+padding-bottom:80px;
+}}
+
+card-about{
+border:none;
+border-radius:10px;
+overflow:hidden;
+}
+.card img{
+height:200px;
+object-fit:cover;
+}
+
+.about-text{
+font-size:18px;
+line-height:1.7;
+color:#d0d8e2;
+}
+
+.about-card{
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.about-card img{
+width:100%;
+height:320px;
+object-fit:cover;
+}
+/* Мобильная адаптация*/
+@media (max-width:768px){
+
+.about-card img{
+height:220px;
+}
+
+.about-text{
+font-size:18px;
+text-align:center;
+line-height:1.7;
+color:#d0d8e2;
+
+}
+
+}
+
+
+.halls{
+max-width:900px;
+margin:auto;
+}
+
+.carousel-img{
+
+height:450px;
+object-fit:cover;
+border-radius:12px;
+
+}
+
+@media (max-width:768px){
+
+.carousel-img{
+height:250px;
+}
+
+}
+
+
+
+.about-story{
+padding-top:160px;
+}
+
+
+/* Карусель*/
+.halls{
+
+max-width:900px;
+margin:auto;
+
+}
+
+.carousel-img{
+
+height:450px;
+object-fit:cover;
+border-radius:12px;
+}
+@media (max-width:768px){
+
+.carousel-img{
+height:250px;
+}
+
 }
