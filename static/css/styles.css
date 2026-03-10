@@ -273,3 +273,25 @@ height:250px;
 }
 
 }
+
+/* HERO для Бронирования */
+
+.hero-booking{
+height:650px;
+
+background-image:url("../images/r3.jpg");
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+color:white;
+text-align:center;
+
+text-shadow:2px 2px 5px black;
+
+margin-top:-80px;
+padding-top:80px;
+}

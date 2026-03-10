@@ -1,10 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<section class="hero-booking">
 
-<h1>Бронирование столика</h1>
+<div class="hero-overlay text-center">
 
-<h2>Доступные столы</h2>
+<h1>Добро пожаловать На страницу Бронирования</h1>
+    <h2>Тут вы можете забронировать доступный стол</h2>
+    <h3>Приятного и уютного вам отдыха</h3>
+
+
+</div>
+
+</section>
+
+
+<section class="booking">
+    <div class="alert alert-primary" role="alert">
+  A simple primary alert—check it out!
+</div>
+<div class="alert alert-secondary" role="alert">
+  A simple secondary alert—check it out!
+</div>
+<div class="alert alert-success" role="alert">
+  A simple success alert—check it out!
+</div>
+<div class="alert alert-danger" role="alert">
+  A simple danger alert—check it out!
+</div>
+<div class="alert alert-warning" role="alert">
+  A simple warning alert—check it out!
+</div>
+<div class="alert alert-info" role="alert">
+  A simple info alert—check it out!
+</div>
+<div class="alert alert-light" role="alert">
+  A simple light alert—check it out!
+</div>
+<div class="alert alert-dark" role="alert">
+  A simple dark alert—check it out!
+</div>
+
+    </section>
+
 
 <ul>
 
@@ -28,13 +66,51 @@
 
 <hr>
 
-<h2>Забронировать стол</h2>
+
+<section class="contact-form container mt-5 mb-5">
+
+<h2 class="text-center mt-5 mb-5">Забронировать стол</h2>
+
+<div class="form-wrapper">
 
 <form method="post">
 
 {% csrf_token %}
 
-{{ form.as_p }}
+<div class="form-group">
+<label>Стол</label>
+{{ form.table }}
+</div>
+
+<div class="form-group">
+<label>Дата</label>
+{{ form.date }}
+</div>
+
+<div class="form-group">
+<label>Время</label>
+{{ form.time }}
+</div>
+
+    <div class="form-group">
+<label>Количество гостей</label>
+{{ form.guests}}
+</div>
+
+<button type="submit" class='btn btn-light btn-sm mt-2 mb-2'>
+Отправить
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+
+
+
 
 <button type="submit">Забронировать</button>
 
