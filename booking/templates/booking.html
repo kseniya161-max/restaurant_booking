@@ -4,6 +4,7 @@
 
 {% block title %}Бронирование{% endblock %}
 {% block content %}
+{% block body_class %}booking-page{% endblock %}
 
 <!--hero-->
 <section class="hero-booking">
@@ -37,6 +38,14 @@
 <h5>Стол №{{ table.number }}</h5>
 
 <p>Мест: {{ table.seats }}</p>
+    <button
+class="btn btn-dark select-table"
+data-table="{{ table.id }}"
+>
+
+Выбрать стол
+
+</button>
 
 </div>
 
