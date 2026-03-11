@@ -453,3 +453,27 @@ width:100px;
 opacity:10;
 
 }
+/* Детали*/
+
+.dashboard-card{
+
+background:#0f1c33;
+
+padding:30px;
+
+border-radius:14px;
+
+border:1px solid rgba(255,255,255,0.05);
+
+box-shadow:0 20px 50px rgba(0,0,0,0.6);
+
+}
+
+/* Детали  меню*/
+.detail-page .main-nav a{
+color:#b38b59;
+}
+
+.detail-page .main-nav a:hover{
+color:white;
+}

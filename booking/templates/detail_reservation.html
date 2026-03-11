@@ -1,14 +1,37 @@
 {% extends "base.html" %}
-
+{% block body_class %}detail-page{% endblock %}
 {% block content %}
 
-<h1>Бронирование</h1>
+<h1 class="page-title">Детали бронирования</h1>
 
-<p>Стол: {{ reservation.table }}</p>
-<p>Дата: {{ reservation.date }}</p>
-<p>Время: {{ reservation.time }}</p>
-<p>Статус: {{ reservation.status }}</p>
+<div class="container">
 
-<a href="/booking/all/">Мои бронирования</a>
+<div class="dashboard-card">
+
+<h3>Стол {{ reservation.table }}</h3>
+
+<p>
+Дата: {{ reservation.date }} <br>
+Время: {{ reservation.time }} <br>
+Статус: {{ reservation.status }}
+</p>
+
+<div class="reservation-actions">
+
+<a class="btn btn-outline-warning"
+href="{% url 'booking:reservation_edit' reservation.id %}">
+Изменить
+</a>
+
+<a class="btn btn-outline-danger"
+href="{% url 'booking:reservation_cancel' reservation.id %}">
+Отменить
+</a>
+
+</div>
+
+</div>
+
+</div>
 
 {% endblock %}
