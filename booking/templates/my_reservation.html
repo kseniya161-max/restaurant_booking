@@ -1,32 +1,61 @@
 {% extends "base.html" %}
-
+{% block body_class %}reservations-page{% endblock %}
 {% block content %}
 
-<h1>Мои бронирования</h1>
+
+
+
+<h1 class="page-title">Мои бронирования</h1>
+
+<div class="container">
+
+<div class="row">
 
 {% for r in reservations %}
 
-<div style="margin-bottom:20px">
+<div class="col-md-6 mb-4">
 
-Стол: {{ r.table }} <br>
+<div class="reservation-card">
+
+<h4>Стол {{ r.table }}</h4>
+
+<p>
 Дата: {{ r.date }} <br>
 Время: {{ r.time }} <br>
 Статус: {{ r.status }}
+</p>
 
-<br><br>
+<div class="reservation-actions">
 
-<a href="{% url 'booking:reservation_detail' r.id %}">Подробнее</a>
-<a href="{% url 'booking:reservation_edit' r.id %}">Изменить</a>
-<a href="{% url 'booking:reservation_cancel' r.id %}">Отменить</a>
+<a class="btn btn-outline-light btn-sm"
+href="{% url 'booking:reservation_detail' r.id %}">
+Подробнее
+</a>
+
+<a class="btn btn-outline-warning btn-sm"
+href="{% url 'booking:reservation_edit' r.id %}">
+Изменить
+</a>
+
+<a class="btn btn-outline-danger btn-sm"
+href="{% url 'booking:reservation_cancel' r.id %}">
+Отменить
+</a>
 
 </div>
 
-<hr>
+</div>
+
+</div>
 
 {% empty %}
 
 <p>У вас нет бронирований</p>
 
 {% endfor %}
+
+</div>
+
+</div>
 
 {% endblock %}

@@ -173,9 +173,18 @@ font-size:14px;
 
 /* About hero*/
 
+/* мои бронирования меню*/
+.about-page .main-nav a{
+color:#b38b59;
+}
+
+.reservations-page .main-nav a:hover{
+color:white;
+}
+
 .hero_about{
-height:350px;
-padding-top:120px;
+height:550px;
+padding-top:200px;
 padding-bottom:80px;
 }}
 
@@ -374,4 +383,73 @@ font-weight:700;
 /* Белый текст меню booking */
 body.booking-page .main-nav a{
 color:white;
+}
+
+
+/* форма бронирования */
+
+.reservation-card{
+
+background:#0f1c33;
+
+padding:25px;
+
+border-radius:12px;
+
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:0 20px 50px rgba(0,0,0,0.5);
+
+}
+
+.reservation-card h4{
+
+color:#b38b59;
+
+margin-bottom:15px;
+
+}
+
+.reservation-actions{
+
+margin-top:20px;
+
+display:flex;
+
+gap:10px;
+
+flex-wrap:wrap;
+
+}
+
+/* мои бронирования страница*/
+.page-title{
+margin-top:120px;
+margin-bottom:50px;
+text-align:center;
+}
+/* мои бронирования меню*/
+.reservations-page .main-nav a{
+color:#b38b59;
+}
+
+.reservations-page .main-nav a:hover{
+color:white;
+}
+
+/* Иконки*/
+.section-divider{
+
+text-align:center;
+
+margin:100px 0;
+color:#b38b59;
+
+}
+
+.section-divider img{
+
+width:100px;
+opacity:10;
+
 }
