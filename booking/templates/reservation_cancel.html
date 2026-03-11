@@ -1,22 +1,31 @@
 {% extends "base.html" %}
-
+{% block body_class %}cancel-page{% endblock %}
 {% block content %}
 
-<h2>Отмена бронирования</h2>
+<h2 class="page-title">Вы уверены что хотите отменить бронирование?</h2>
+
+<div class="container">
+
+<div class="dashboard-card">
+
+<h3>Стол {{ object.table }}</h3>
 
 <p>
-Вы уверены что хотите отменить бронирование
-<strong>{{ object.table }}</strong>
-на дату
-<strong>{{ object.date }}</strong>
-?
+Дата: {{ object.date }} <br>
+Время: {{ object.time }} <br>
 </p>
+
+<div class="reservation-actions">
 
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Да, отменить</button>
+    <button type="submit" class="btn btn-outline-danger">Да, отменить</button>
 </form>
 
 <a href="{% url 'booking:my_reservations' %}">Назад</a>
+    </div>
+    </div>
+    </div>
+
 
 {% endblock %}

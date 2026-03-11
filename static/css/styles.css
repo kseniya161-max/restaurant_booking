@@ -44,7 +44,7 @@ padding:0;
 .hero{
 height:650px;
 
-background-image:url("../images/r6.jpg");
+background-image:url("../images/s2.jpg");
 background-size:cover;
 background-position:center;
 
@@ -175,7 +175,7 @@ font-size:14px;
 
 /* мои бронирования меню*/
 .about-page .main-nav a{
-color:#b38b59;
+color:white;
 }
 
 .reservations-page .main-nav a:hover{
@@ -288,7 +288,7 @@ height:250px;
 .hero-booking{
 height:650px;
 
-background-image:url("../images/r3.jpg");
+background-image:url("../images/s2.jpg");
 background-size:cover;
 background-position:center;
 
@@ -477,3 +477,83 @@ color:#b38b59;
 .detail-page .main-nav a:hover{
 color:white;
 }
+
+/* Отмена  меню*/
+.cancel-page .main-nav a{
+color:#b38b59;
+}
+
+.cancel-page .main-nav a:hover{
+color:white;
+}
+
+.welcome-text{
+
+text-align:center;
+
+font-style:italic;
+
+color:#d4af37;
+
+font-size:60px;
+
+margin-top:50px;
+
+}
+
+/* Разделитель*/
+.divider{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:20px;
+
+color:#d4af37;
+
+margin:60px 0;
+font-size:80px;
+letter-spacing:10px;
+margin:20px 0;
+
+}
+
+.divider span{
+
+height:1px;
+
+width:160px;
+
+background:#d4af37;
+
+display:block;
+
+
+}
+
+/* HERO для О нас*/
+
+.hero-about{
+height:650px;
+
+background-image:url("../images/s2.jpg");
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+color:white;
+text-align:center;
+
+text-shadow:2px 2px 5px black;
+
+margin-top:-80px;
+padding-top:80px;
+}
+
+
