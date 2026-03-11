@@ -295,3 +295,48 @@ text-shadow:2px 2px 5px black;
 margin-top:-80px;
 padding-top:80px;
 }
+
+
+
+/* форма бронирования */
+.form-wrapper{
+
+max-width:650px;
+margin:auto;
+
+background:white;
+
+padding:40px;
+
+border-radius:12px;
+
+box-shadow:0 15px 35px rgba(0,0,0,0.2);
+
+}
+
+
+/* карточки столы */
+
+.table-card{
+
+background:#ffffff;
+
+border-radius:12px;
+
+box-shadow:0 15px 30px rgba(0,0,0,0.15);
+
+}
+
+.table-card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
+
+}
+
+.hero-booking .navbar a{
+
+color:white !important;
+
+}

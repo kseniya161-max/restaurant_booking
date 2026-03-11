@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block title %}Бронирование{% endblock %}
 {% block content %}
+
+<!--hero-->
 <section class="hero-booking">
 
 <div class="hero-overlay text-center">
@@ -14,59 +19,43 @@
 
 </section>
 
+<!--карточки столы-->
+<section class="tables container mt-5">
 
-<section class="booking">
-    <div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
-</div>
-<div class="alert alert-secondary" role="alert">
-  A simple secondary alert—check it out!
-</div>
-<div class="alert alert-success" role="alert">
-  A simple success alert—check it out!
-</div>
-<div class="alert alert-danger" role="alert">
-  A simple danger alert—check it out!
-</div>
-<div class="alert alert-warning" role="alert">
-  A simple warning alert—check it out!
-</div>
-<div class="alert alert-info" role="alert">
-  A simple info alert—check it out!
-</div>
-<div class="alert alert-light" role="alert">
-  A simple light alert—check it out!
-</div>
-<div class="alert alert-dark" role="alert">
-  A simple dark alert—check it out!
-</div>
+<h2 class="text-center mb-4">Доступные столы</h2>
 
-    </section>
-
-
-<ul>
+<div class="row">
 
 {% for table in tables %}
 
-<li>
+<div class="col-md-4 mb-4">
 
-Стол №{{ table.number }}
+<div class="card table-card">
 
-(мест: {{ table.seats }})
+<div class="card-body text-center">
 
-</li>
+<h5>Стол №{{ table.number }}</h5>
+
+<p>Мест: {{ table.seats }}</p>
+
+</div>
+
+</div>
+
+</div>
 
 {% empty %}
 
-<li>Нет доступных столов</li>
+<p>Нет доступных столов</p>
 
 {% endfor %}
 
-</ul>
+</div>
 
-<hr>
+</section>
 
 
+<!--Бронирование стола-->
 <section class="contact-form container mt-5 mb-5">
 
 <h2 class="text-center mt-5 mb-5">Забронировать стол</h2>
@@ -97,8 +86,8 @@
 {{ form.guests}}
 </div>
 
-<button type="submit" class='btn btn-light btn-sm mt-2 mb-2'>
-Отправить
+<button type="submit" class='btn btn-dark btn-sm mt-2 mb-2'>
+Забронировать
 </button>
 
 </form>
@@ -107,12 +96,6 @@
 
 </section>
 
-
-
-
-
-
-<button type="submit">Забронировать</button>
 
 </form>
 
