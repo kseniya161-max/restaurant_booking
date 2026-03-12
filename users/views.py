@@ -13,3 +13,9 @@ class RegistrationCreateView(CreateView):
     success_url = reverse_lazy('login')
 
 
+from django.contrib.auth.views import LoginView
+from .forms import EmailAuthenticationForm
+
+class UserLoginView(LoginView):
+    template_name = "registration/login.html"
+    authentication_form = EmailAuthenticationForm

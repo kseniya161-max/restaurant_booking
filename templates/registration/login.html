@@ -2,12 +2,45 @@
 
 {% block content %}
 
-<h2>Login</h2>
+<section class="hero-booking">
+
+<div class="hero-overlay text-center">
+    </div>
+    </section>
+
+
+<section class="contact-form container mt-5 mb-5">
+
+<h2 class="text-center mt-5 mb-5">Регистрация</h2>
+
+<div class="form-wrapper">
 
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
+
+{% csrf_token %}
+
+<div class="form-group">
+<label>Email</label>
+{{ form.username }}
+</div>
+
+<div class="form-group">
+<label>Пароль</label>
+{{ form.password }}
+</div>
+
+
+<button type="submit" class="btn btn-dark w-100">
+Авторизоваться
+</button>
+
 </form>
+
+</div>
+
+</section>
+
+
+
 
 {% endblock %}

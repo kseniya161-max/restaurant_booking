@@ -2,12 +2,34 @@
 
 {% block content %}
 
-<h2>Register</h2>
+<section class="hero-booking">
+
+<div class="hero-overlay text-center">
+</div>
+
+</section>
+
+
+<section class="contact-form container mt-5 mb-5">
+
+<h2 class="text-center mt-5 mb-5">Регистрация</h2>
+
+<div class="form-wrapper">
 
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
+
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button type="submit" class="btn btn-dark w-100 mt-3">
+Зарегистрироваться
+</button>
+
 </form>
+
+</div>
+
+</section>
 
 {% endblock %}
