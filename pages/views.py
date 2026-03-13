@@ -5,7 +5,7 @@ from pages.forms import ContactForm
 
 
 class HomePageView(TemplateView):
-    template_name = 'pages/home.html'
+    template_name = "pages/home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -17,7 +17,7 @@ class HomePageView(TemplateView):
 
         if form.is_valid():
             form.save()
-            return redirect('pages:home')
+            return redirect("pages:home")
 
         context = self.get_context_data()
         context["form"] = form
@@ -25,4 +25,4 @@ class HomePageView(TemplateView):
 
 
 class AboutPageView(TemplateView):
-    template_name = 'pages/about.html'
+    template_name = "pages/about.html"

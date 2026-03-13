@@ -8,38 +8,88 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Reservation',
+            name="Reservation",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField(verbose_name='Дата')),
-                ('time', models.TimeField(verbose_name='Время')),
-                ('guests', models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Количество гостей')),
-                ('status', models.CharField(choices=[('free', 'Free'), ('confirmed', 'Confirmed'), ('cancelled', 'Cancelled')], default='free', max_length=20)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("date", models.DateField(verbose_name="Дата")),
+                ("time", models.TimeField(verbose_name="Время")),
+                (
+                    "guests",
+                    models.PositiveIntegerField(
+                        validators=[django.core.validators.MinValueValidator(1)],
+                        verbose_name="Количество гостей",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("free", "Free"),
+                            ("confirmed", "Confirmed"),
+                            ("cancelled", "Cancelled"),
+                        ],
+                        default="free",
+                        max_length=20,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'verbose_name': 'Бронирование',
-                'verbose_name_plural': 'Бронирования',
-                'ordering': ['-date', '-time'],
+                "verbose_name": "Бронирование",
+                "verbose_name_plural": "Бронирования",
+                "ordering": ["-date", "-time"],
             },
         ),
         migrations.CreateModel(
-            name='Table',
+            name="Table",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('number', models.PositiveIntegerField(unique=True, verbose_name='номер стола')),
-                ('seats', models.PositiveIntegerField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(1)], verbose_name='количество мест')),
-                ('description', models.CharField(blank=True, max_length=250, null=True, verbose_name='Описание')),
-                ('is_active', models.BooleanField(default=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "number",
+                    models.PositiveIntegerField(
+                        unique=True, verbose_name="номер стола"
+                    ),
+                ),
+                (
+                    "seats",
+                    models.PositiveIntegerField(
+                        blank=True,
+                        null=True,
+                        validators=[django.core.validators.MinValueValidator(1)],
+                        verbose_name="количество мест",
+                    ),
+                ),
+                (
+                    "description",
+                    models.CharField(
+                        blank=True, max_length=250, null=True, verbose_name="Описание"
+                    ),
+                ),
+                ("is_active", models.BooleanField(default=True)),
             ],
             options={
-                'verbose_name': 'Стол',
-                'verbose_name_plural': 'Столы',
+                "verbose_name": "Стол",
+                "verbose_name_plural": "Столы",
             },
         ),
     ]

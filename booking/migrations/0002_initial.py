@@ -10,23 +10,33 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('booking', '0001_initial'),
+        ("booking", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='reservation',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reservations', to=settings.AUTH_USER_MODEL, verbose_name='Клиент'),
+            model_name="reservation",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="reservations",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Клиент",
+            ),
         ),
         migrations.AddField(
-            model_name='reservation',
-            name='table',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reservations', to='booking.table', verbose_name='стол'),
+            model_name="reservation",
+            name="table",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="reservations",
+                to="booking.table",
+                verbose_name="стол",
+            ),
         ),
         migrations.AlterUniqueTogether(
-            name='reservation',
-            unique_together={('table', 'date', 'time')},
+            name="reservation",
+            unique_together={("table", "date", "time")},
         ),
     ]

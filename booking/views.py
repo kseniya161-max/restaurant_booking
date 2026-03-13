@@ -11,16 +11,15 @@ from django.conf import settings
 
 class BookingPageView(LoginRequiredMixin, ListView):
     model = Table
-    template_name = 'booking.html'
-    context_object_name = 'tables'
-
+    template_name = "booking.html"
+    context_object_name = "tables"
 
     def get_queryset(self):
         return Table.objects.filter(is_active=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = ReservationForm()
+        context["form"] = ReservationForm()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -30,36 +29,33 @@ class BookingPageView(LoginRequiredMixin, ListView):
             reservation = form.save(commit=False)
 
             reservation.user = request.user
-            reservation.status = 'confirmed'
+            reservation.status = "confirmed"
 
             reservation.save()
 
             send_mail(
-                subject='Бронирование подтверждено',
-                message=f'Ваше бронирование подтверждено. Стол: {reservation.table} '
-                        f'Дата: {reservation.date} Время: {reservation.time}',
+                subject="Бронирование подтверждено",
+                message=f"Ваше бронирование подтверждено. Стол: {reservation.table} "
+                f"Дата: {reservation.date} Время: {reservation.time}",
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[request.user.email],
-                fail_silently=False
+                fail_silently=False,
             )
 
             messages.success(request, "Бронирование успешно создано")
 
-            return redirect('booking:reservation_detail', pk=reservation.pk)
+            return redirect("booking:reservation_detail", pk=reservation.pk)
 
         context = self.get_context_data(object_list=self.get_queryset())
-        context['form'] = form
+        context["form"] = form
         return render(request, self.template_name, context)
-
-
 
 
 class MyReservationListView(LoginRequiredMixin, ListView):
     model = Reservation
     # template_name = 'booking/my_reservation.html'
-    template_name = 'my_reservation.html'
-    context_object_name = 'reservations'
-
+    template_name = "my_reservation.html"
+    context_object_name = "reservations"
 
     def get_queryset(self):
         return Reservation.objects.filter(user=self.request.user)
@@ -68,26 +64,21 @@ class MyReservationListView(LoginRequiredMixin, ListView):
 class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     model = Reservation
     form_class = ReservationForm
-    template_name = 'update_reservation.html'
-    success_url = reverse_lazy('booking:my_reservations')
-
+    template_name = "update_reservation.html"
+    success_url = reverse_lazy("booking:my_reservations")
 
     def get_queryset(self):
         return Reservation.objects.filter(user=self.request.user)
 
-
-    def form_valid(self,form):
-        messages.success(self.request, 'Бронирование обновлено')
+    def form_valid(self, form):
+        messages.success(self.request, "Бронирование обновлено")
         return super().form_valid(form)
-
-
 
 
 class ReservationDetailView(LoginRequiredMixin, DetailView):
     model = Reservation
-    template_name = 'detail_reservation.html'
-    context_object_name = 'reservation'
-
+    template_name = "detail_reservation.html"
+    context_object_name = "reservation"
 
     def get_queryset(self):
         return Reservation.objects.filter(user=self.request.user)
@@ -97,28 +88,13 @@ class ReservationCancelView(LoginRequiredMixin, UpdateView):
     model = Reservation
     # form_class = ReservationForm
     fields = []
-    template_name = 'reservation_cancel.html'
-    success_url = reverse_lazy('booking:my_reservations')
-
+    template_name = "reservation_cancel.html"
+    success_url = reverse_lazy("booking:my_reservations")
 
     def form_valid(self, form):
-        form.instance.status = 'cancelled'
+        form.instance.status = "cancelled"
         messages.success(self.request, "Бронирование отменено")
         return super().form_valid(form)
 
     def get_queryset(self):
         return Reservation.objects.filter(user=self.request.user)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

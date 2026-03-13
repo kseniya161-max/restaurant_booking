@@ -7,35 +7,55 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ContactMessage',
+            name="ContactMessage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('email', models.EmailField(max_length=254)),
-                ('message', models.TextField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("email", models.EmailField(max_length=254)),
+                ("message", models.TextField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
             ],
             options={
-                'ordering': ['-created_at'],
+                "ordering": ["-created_at"],
             },
         ),
         migrations.CreateModel(
-            name='PageContent',
+            name="PageContent",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('page', models.CharField(choices=[('home', 'Home'), ('about', 'About')], max_length=20)),
-                ('title', models.CharField(max_length=200)),
-                ('content', models.TextField()),
-                ('image', models.ImageField(blank=True, null=True, upload_to='pages/')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "page",
+                    models.CharField(
+                        choices=[("home", "Home"), ("about", "About")], max_length=20
+                    ),
+                ),
+                ("title", models.CharField(max_length=200)),
+                ("content", models.TextField()),
+                ("image", models.ImageField(blank=True, null=True, upload_to="pages/")),
             ],
             options={
-                'verbose_name': 'Контент страницы',
-                'verbose_name_plural': 'Контент Страниц',
+                "verbose_name": "Контент страницы",
+                "verbose_name_plural": "Контент Страниц",
             },
         ),
     ]
