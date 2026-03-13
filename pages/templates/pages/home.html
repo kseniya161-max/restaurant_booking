@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="hero-overlay text-center">
+
+<h1>Добро пожаловать в наш ресторан</h1>
+
+<p>Лучшие традиции европейской кухни</p>
+     <a href="https://t.me/kseniya_bah" class="btn btn-light btn-sm mt-2 mb-2">Связаться с нами</a>
+     <a href="{% url 'booking:booking'  %}" class='btn btn-light btn-sm mt-2 mb-2'>Забронировать</a>
+
+</div>
+
+</section>
+
+<div class="divider">
+
+<span></span>
+⚜
+<span></span>
+
+</div>
+
+
+
+
+<!-- DESCRIPTION -->
+<section class="description container mt-5">
+
+<h2>Описание ресторана</h2>
+
+<p class="lead">
+Наш ресторан специализируется исключительно на русской кухне<br>
+У нас вы окунетесь в атмосферу русской кухни<br>
+Попробуете лучшие традиционные блюда
+</p>
+
+</section>
+<div class="divider">
+
+<span></span>
+⚜
+<span></span>
+
+</div>
+
+
+
+<!-- SERVICES -->
+<section class="service container mt-5">
+
+<h2 class="text-center mb-5 mt-5">Наш сервис</h2>
+
+<div class="row">
+
+<div class="col-lg-4 col-md-6 col-12 mb-5">
+
+<div class="card">
+<img src="{% static 'images/r5.jpg' %}" class="card-img-top">
+
+<div class="card-body">
+<h5 class="card-title">Мероприятия</h5>
+
+<p class="card-text">
+Мы устраиваем мероприятия от дня рождения до повышения
+</p>
+
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-4 col-md-6 col-12 mb-5">
+
+<div class="card">
+<img src="{% static 'images/r3.jpg' %}" class="card-img-top">
+
+<div class="card-body">
+
+<h5 class="card-title">Семейные ужины</h5>
+
+<p class="card-text">
+У нас есть отдельный зал для семейных ужинов
+</p>
+
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-4 col-md-6 col-12 mb-5">
+
+<div class="card">
+
+<img src="{% static 'images/r2.avif' %}" class="card-img-top">
+
+<div class="card-body">
+
+<h5 class="card-title">Банкеты</h5>
+
+<p class="card-text">
+Проводим банкеты до 100 человек
+</p>
+
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- CONTACT FORM -->
+<section class="contact-form container mt-5 mb-5">
+
+<h2 class="text-center mt-5 mb-5">Форма обратной связи</h2>
+
+<p class="text-center">
+Вы можете с нами связаться и мы обязательно вам перезвоним
+</p>
+
+<div class="form-wrapper">
+
+<form method="post">
+
+{% csrf_token %}
+
+<div class="form-group">
+<label>Имя</label>
+{{ form.name }}
+</div>
+
+<div class="form-group">
+<label>Email</label>
+{{ form.email }}
+</div>
+
+<div class="form-group">
+<label>Сообщение</label>
+{{ form.message }}
+</div>
+
+<button type="submit" class='btn btn-light btn-sm mt-2 mb-2'>
+Отправить
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+{% endblock %}

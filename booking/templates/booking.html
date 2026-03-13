@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Бронирование{% endblock %}
+{% block body_class %}booking-page{% endblock %}
+{% block content %}
+
+
+<!--hero-->
+<section class="hero-booking">
+
+<div class="hero-overlay text-center">
+
+<h1>Добро пожаловать На страницу Бронирования</h1>
+    <h2>Тут вы можете забронировать доступный стол</h2>
+    <h3>Приятного и уютного вам отдыха</h3>
+
+
+</div>
+
+
+</section>
+
+<div class="divider">
+
+<span></span>
+⚜
+<span></span>
+
+</div>
+
+<!--карточки столы-->
+<section class="tables container mt-5">
+
+<h2 class="text-center mb-4">Доступные столы</h2>
+
+<div class="row">
+
+{% for table in tables %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card table-card">
+
+<div class="card-body text-center">
+
+<h5>Стол №{{ table.number }}</h5>
+
+<p>Мест: {{ table.seats }}</p>
+    <button
+class="btn btn-dark select-table"
+data-table="{{ table.id }}"
+>
+
+Выбрать стол
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<p>Нет доступных столов</p>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+
+<!--Бронирование стола-->
+<section class="contact-form container mt-5 mb-5">
+
+<h2 class="text-center mt-5 mb-5">Забронировать стол</h2>
+
+<div class="form-wrapper">
+
+<form method="post">
+
+{% csrf_token %}
+
+<div class="form-group">
+<label>Стол</label>
+{{ form.table }}
+</div>
+
+<div class="form-group">
+<label>Дата</label>
+{{ form.date }}
+</div>
+
+<div class="form-group">
+<label>Время</label>
+{{ form.time }}
+</div>
+
+    <div class="form-group">
+<label>Количество гостей</label>
+{{ form.guests}}
+</div>
+
+<button type="submit" class='btn btn-dark btn-sm mt-2 mb-2'>
+Забронировать
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+</form>
+
+{% endblock %}
