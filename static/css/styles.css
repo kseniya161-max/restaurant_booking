@@ -16,7 +16,7 @@ padding:20px;
 }
 
 .main-nav a{
-color:black;
+color:white;
 text-decoration:none;
 font-weight:700;
 font-size:18px;
@@ -430,11 +430,11 @@ text-align:center;
 }
 /* мои бронирования меню*/
 .reservations-page .main-nav a{
-color:#b38b59;
+color:white;
 }
 
 .reservations-page .main-nav a:hover{
-color:white;
+color:#d4af37;
 }
 
 /* Иконки*/
