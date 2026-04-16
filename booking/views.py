@@ -15,7 +15,7 @@ class BookingPageView(LoginRequiredMixin, ListView):
     context_object_name = "tables"
 
     def get_queryset(self):
-        return Table.objects.filter(is_active=True)
+        return super().get_queryset().filter(is_active=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -53,12 +53,11 @@ class BookingPageView(LoginRequiredMixin, ListView):
 
 class MyReservationListView(LoginRequiredMixin, ListView):
     model = Reservation
-    # template_name = 'booking/my_reservation.html'
     template_name = "my_reservation.html"
     context_object_name = "reservations"
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user)
 
 
 class ReservationUpdateView(LoginRequiredMixin, UpdateView):
@@ -68,7 +67,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("booking:my_reservations")
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user)
 
     def form_valid(self, form):
         messages.success(self.request, "Бронирование обновлено")
@@ -81,12 +80,11 @@ class ReservationDetailView(LoginRequiredMixin, DetailView):
     context_object_name = "reservation"
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user)
 
 
 class ReservationCancelView(LoginRequiredMixin, UpdateView):
     model = Reservation
-    # form_class = ReservationForm
     fields = []
     template_name = "reservation_cancel.html"
     success_url = reverse_lazy("booking:my_reservations")
@@ -97,4 +95,4 @@ class ReservationCancelView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user)
