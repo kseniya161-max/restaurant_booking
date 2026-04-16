@@ -5,7 +5,6 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from booking.models import Table, Reservation
 from booking.forms import ReservationForm
-from django.core.mail import send_mail
 from django.conf import settings
 
 
@@ -33,13 +32,15 @@ class BookingPageView(LoginRequiredMixin, ListView):
 
             reservation.save()
 
-            send_mail(
+            request.user.email_user(
                 subject="Бронирование подтверждено",
-                message=f"Ваше бронирование подтверждено. Стол: {reservation.table} "
-                f"Дата: {reservation.date} Время: {reservation.time}",
+                message=(
+                    f"Ваше бронирование подтверждено.\n"
+                    f"Стол: {reservation.table}\n"
+                    f"Дата: {reservation.date}\n"
+                    f"Время: {reservation.time}"
+                ),
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[request.user.email],
-                fail_silently=False,
             )
 
             messages.success(request, "Бронирование успешно создано")
