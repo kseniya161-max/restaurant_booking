@@ -20,6 +20,34 @@
 * Celery (асинхронные задачи)
 * Redis (брокер сообщений)
 
+## Переменные окружения
+
+Перед запуском проекта необходимо создать файл `.env` на основе `.env.sample`:
+
+cp .env.sample .env
+
+Для Windows:
+copy .env.sample .env
+
+или вручную скопировать и заполнить значения.
+
+Пример переменных:
+
+DATABASE_NAME=your_db
+DATABASE_USER=your_user
+DATABASE_PASSWORD=your_password
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+
+EMAIL_BACKEND=...
+EMAIL_HOST=...
+EMAIL_HOST_USER=...
+
+SECRET_KEY=your_secret_key
+
+CELERY_BROKER_URL=redis://localhost:6379/0
+CELERY_RESULT_BACKEND=redis://localhost:6379/0
+
 ## Асинхронные задачи
 
 Для отправки email-уведомлений используется Celery.
@@ -29,8 +57,14 @@
 
 В качестве брокера сообщений используется Redis.
 
-В режиме разработки используется console email backend  - письма выводятся в терминал, 
+В режиме разработки используется console email backend - письма выводятся в терминал, 
 что позволяет тестировать функциональность без настройки SMTP-сервера.
+
+Для отправки email можно использовать SMTP (например, Yandex или Gmail).
+
+В режиме разработки рекомендуется использовать:
+
+EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 
 ## Запуск проекта
 
@@ -46,7 +80,7 @@ docker compose up --build
 
 http://localhost:8000
 
-4. Запустить Celery worker:
+4. В отдельном терминале запустить Celery worker:
 
 poetry run celery -A config worker --loglevel=info --pool=solo
 
