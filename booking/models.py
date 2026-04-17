@@ -13,8 +13,7 @@ class Table(models.Model):
         verbose_name="количество мест",
         validators=[MinValueValidator(1)],
     )
-    description = models.TextField(blank=True, null=True, verbose_name="Описание"
-    )
+    description = models.TextField(blank=True, null=True, verbose_name="Описание")
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
