@@ -6,6 +6,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from booking.models import Table, Reservation
 from booking.forms import ReservationForm
 from django.conf import settings
+from booking.tasks import send_reservation_confirmation_email
 
 
 class BookingPageView(LoginRequiredMixin, ListView):
@@ -31,20 +32,14 @@ class BookingPageView(LoginRequiredMixin, ListView):
             reservation.status = "confirmed"
 
             reservation.save()
-
-            request.user.email_user(
-                subject="Бронирование подтверждено",
-                message=(
-                    f"Ваше бронирование подтверждено.\n"
-                    f"Стол: {reservation.table}\n"
-                    f"Дата: {reservation.date}\n"
-                    f"Время: {reservation.time}"
-                ),
-                from_email=settings.DEFAULT_FROM_EMAIL,
+            send_reservation_confirmation_email.delay(
+                request.user.email,
+                str(reservation.table),
+                str(reservation.date),
+                str(reservation.time),
             )
 
             messages.success(request, "Бронирование успешно создано")
-
             return redirect("booking:reservation_detail", pk=reservation.pk)
 
         context = self.get_context_data(object_list=self.get_queryset())
