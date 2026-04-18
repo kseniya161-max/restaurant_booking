@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from booking.models import Table, Reservation
 from booking.forms import ReservationForm
-from django.core.mail import send_mail
 from django.conf import settings
+from booking.tasks import send_reservation_confirmation_email
 
 
 class BookingPageView(LoginRequiredMixin, ListView):
@@ -15,7 +15,7 @@ class BookingPageView(LoginRequiredMixin, ListView):
     context_object_name = "tables"
 
     def get_queryset(self):
-        return Table.objects.filter(is_active=True)
+        return super().get_queryset().filter(is_active=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -32,18 +32,14 @@ class BookingPageView(LoginRequiredMixin, ListView):
             reservation.status = "confirmed"
 
             reservation.save()
-
-            send_mail(
-                subject="Бронирование подтверждено",
-                message=f"Ваше бронирование подтверждено. Стол: {reservation.table} "
-                f"Дата: {reservation.date} Время: {reservation.time}",
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[request.user.email],
-                fail_silently=False,
+            send_reservation_confirmation_email.delay(
+                request.user.email,
+                str(reservation.table),
+                str(reservation.date),
+                str(reservation.time),
             )
 
             messages.success(request, "Бронирование успешно создано")
-
             return redirect("booking:reservation_detail", pk=reservation.pk)
 
         context = self.get_context_data(object_list=self.get_queryset())
@@ -53,12 +49,11 @@ class BookingPageView(LoginRequiredMixin, ListView):
 
 class MyReservationListView(LoginRequiredMixin, ListView):
     model = Reservation
-    # template_name = 'booking/my_reservation.html'
     template_name = "my_reservation.html"
     context_object_name = "reservations"
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user)
 
 
 class ReservationUpdateView(LoginRequiredMixin, UpdateView):
@@ -68,7 +63,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("booking:my_reservations")
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user)
 
     def form_valid(self, form):
         messages.success(self.request, "Бронирование обновлено")
@@ -81,12 +76,11 @@ class ReservationDetailView(LoginRequiredMixin, DetailView):
     context_object_name = "reservation"
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user)
 
 
 class ReservationCancelView(LoginRequiredMixin, UpdateView):
     model = Reservation
-    # form_class = ReservationForm
     fields = []
     template_name = "reservation_cancel.html"
     success_url = reverse_lazy("booking:my_reservations")
@@ -97,4 +91,4 @@ class ReservationCancelView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
     def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+        return super().get_queryset().filter(user=self.request.user)

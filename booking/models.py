@@ -6,16 +6,14 @@ from django.conf import settings
 class Table(models.Model):
     """Модель столики"""
 
-    number = models.PositiveIntegerField(verbose_name="номер стола", unique=True)
-    seats = models.PositiveIntegerField(
+    number = models.PositiveSmallIntegerField(verbose_name="номер стола", unique=True)
+    seats = models.PositiveSmallIntegerField(
         blank=True,
         null=True,
         verbose_name="количество мест",
         validators=[MinValueValidator(1)],
     )
-    description = models.CharField(
-        max_length=250, blank=True, null=True, verbose_name="Описание"
-    )
+    description = models.TextField(blank=True, null=True, verbose_name="Описание")
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -49,7 +47,7 @@ class Reservation(models.Model):
     )
     date = models.DateField(verbose_name="Дата")
     time = models.TimeField(verbose_name="Время")
-    guests = models.PositiveIntegerField(
+    guests = models.PositiveSmallIntegerField(
         verbose_name="Количество гостей", validators=[MinValueValidator(1)]
     )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="free")
