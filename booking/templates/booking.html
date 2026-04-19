@@ -83,30 +83,41 @@ data-table="{{ table.id }}"
 
 <form method="post">
 
-{% csrf_token %}
+    {% csrf_token %}
 
-<div class="form-group">
-<label>Стол</label>
-{{ form.table }}
-</div>
-
-<div class="form-group">
-<label>Дата</label>
-{{ form.date }}
-</div>
-
-<div class="form-group">
-<label>Время</label>
-{{ form.time }}
-</div>
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <div class="form-group">
-<label>Количество гостей</label>
-{{ form.guests}}
-</div>
+        <label>Стол</label>
+        {{ form.table }}
+    </div>
 
-<button type="submit" class='btn btn-dark btn-sm mt-2 mb-2'>
-Забронировать
+    <div class="form-group">
+        <label>Дата</label>
+        {{ form.date }}
+    </div>
+
+    <div class="form-group">
+        <label>Время</label>
+        {{ form.time }}
+    </div>
+
+    <div class="form-group">
+        <label>Количество гостей</label>
+        {{ form.guests }}
+    </div>
+
+    <button type="submit" class="btn btn-dark btn-sm mt-2 mb-2">
+        Забронировать
+    </button>
+
+</form>
 </button>
 
 </form>
