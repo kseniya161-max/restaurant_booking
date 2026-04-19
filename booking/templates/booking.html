@@ -12,9 +12,9 @@
 
 <div class="hero-overlay text-center">
 
-<h1>Добро пожаловать На страницу Бронирования</h1>
-    <h2>Тут вы можете забронировать доступный стол</h2>
-    <h3>Приятного и уютного вам отдыха</h3>
+<h2>Добро пожаловать На страницу Бронирования</h2>
+    <h3>Тут вы можете забронировать доступный стол</h3>
+    <h4>Приятного и уютного вам отдыха</h4>
 
 
 </div>
@@ -31,9 +31,9 @@
 </div>
 
 <!--карточки столы-->
-<section class="tables container mt-5">
+<section class="tables container py-3">
 
-<h2 class="text-center mb-4">Доступные столы</h2>
+<h3 class="text-center mt-5 mb-5">Доступные столы</h3>
 
 <div class="row">
 
@@ -75,38 +75,49 @@ data-table="{{ table.id }}"
 
 
 <!--Бронирование стола-->
-<section class="contact-form container mt-5 mb-5">
+<section class="contact-form container py-3">
 
-<h2 class="text-center mt-5 mb-5">Забронировать стол</h2>
+<h3 class="text-center mt-5 mb-5">Забронировать стол</h3>
 
 <div class="form-wrapper">
 
 <form method="post">
 
-{% csrf_token %}
+    {% csrf_token %}
 
-<div class="form-group">
-<label>Стол</label>
-{{ form.table }}
-</div>
-
-<div class="form-group">
-<label>Дата</label>
-{{ form.date }}
-</div>
-
-<div class="form-group">
-<label>Время</label>
-{{ form.time }}
-</div>
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <div class="form-group">
-<label>Количество гостей</label>
-{{ form.guests}}
-</div>
+        <label>Стол</label>
+        {{ form.table }}
+    </div>
 
-<button type="submit" class='btn btn-dark btn-sm mt-2 mb-2'>
-Забронировать
+    <div class="form-group">
+        <label>Дата</label>
+        {{ form.date }}
+    </div>
+
+    <div class="form-group">
+        <label>Время</label>
+        {{ form.time }}
+    </div>
+
+    <div class="form-group">
+        <label>Количество гостей</label>
+        {{ form.guests }}
+    </div>
+
+    <button type="submit" class="btn btn-dark btn-sm mt-2 mb-2">
+        Забронировать
+    </button>
+
+</form>
 </button>
 
 </form>
@@ -115,7 +126,5 @@ data-table="{{ table.id }}"
 
 </section>
 
-
-</form>
 
 {% endblock %}
